@@ -5,8 +5,8 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     username: root
-    password: wycmzxx888888..
-    url: jdbc:mysql://106.53.103.231:3306/device?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    password: 
+    url: jdbc:mysql://localhost/device?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
   main:
     allow-circular-references: true
