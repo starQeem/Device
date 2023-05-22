@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="../static/css/login.css" th:href="@{/css/login.css}">
+</head>
+<body>
+<div class="login-box">
+  <h2 th:text="#{login.tip}">登录</h2>
+    <span style="color: red" th:text="${message}" th:if="${message!=null}">诶嘿</span><br><br>
+  <form action="#" th:action="@{/}" method="post" id="myForm">
+
+    <input type="text" id="username" name="username" th:placeholder="#{login.username}" placeholder="请输入用户名">
+    <input type="password" id="password" name="password" th:placeholder="#{login.password}" placeholder="请输入密码">
+
+    <button type="submit" onclick="return validateForm()" th:text="#{login.sign}">登录</button>
+
+      <a href="#" th:href="@{/login.html(l='zh_CN')}">中文</a>
+      <a href="#" th:href="@{/login.html(l='en_US')}">English</a>
+      <a href="#" th:text="#{login.register}" style="float: right;">没有账号?肘!注册去!</a>
+  </form>
+</div>
+<script>
+    function validateForm() {
+        var regex = /^(?!.*[\u4e00-\u9fa5]).{1,16}$/; // 正则表达式
+        // 获取表单元素的值
+        var username = document.forms["myForm"]["username"].value;
+        var password = document.forms["myForm"]["password"].value;
+        // 检查用户名
+        if (username == "") {
+            alert("用户名不能为空");
+            return false;
+        }
+        if (!regex.test(username)){
+            alert("用户名不能为中文且必须在16位以内!")
+            return false;
+        }
+        //检查密码
+        if (password == "") {
+            alert("密码不能为空");
+            return false;
+        }
+        if (!regex.test(password)){
+            alert("密码不能为中文且必须在16位以内!")
+            return false;
+        }
+        // 校验通过，允许提交表单
+        return true;
+    }
+</script>
+</body>
+</html>

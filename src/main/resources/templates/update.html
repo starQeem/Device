@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改设备</title>
+    <link rel="stylesheet" href="../static/css/update.css" th:href="@{/css/update.css}">
+</head>
+<body>
+<br><br><br><br><br>
+<div class="container">
+    <h3>修改设备</h3>
+    <form th:action="@{/index/update}" th:object="${device}" method="post">
+        <input type="hidden" name="id" th:value="${device.id}">
+        <div class="row">
+            <div class="col-25">
+                <label for="name">名称:</label>
+                <input type="text" id="name" th:field="*{name}"/><br/>
+
+                <label for="label">类型:</label>
+                <input type="text" id="label" th:field="*{label}"/><br/>
+
+                <label for="price">价格:</label>
+                <input type="text" id="price" th:field="*{price}"/><br/>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <input type="submit" value="提交">
+            <a href="#" class="button" th:href="@{/index}">返回</a>
+        </div>
+    </form>
+</body>
+</html>

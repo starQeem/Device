@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加设备</title>
+    <link rel="stylesheet" href="../static/css/add.css" th:href="@{/css/add.css}">
+</head>
+<body>
+<br><br><br><br><br>
+<div class="container">
+    <h3>添加设备</h3>
+    <form th:action="@{/index/add}" th:object="${device}" method="post" id="myForm">
+        <div class="row">
+            <div class="col-25">
+                <label for="name">名称:</label>
+                <input type="text" id="name" th:field="*{name}"/><br/>
+
+                <label for="label">类型:</label>
+                <input type="text" id="label" th:field="*{label}"/><br/>
+
+                <label for="price">价格:</label>
+                <input type="text" id="price" th:field="*{price}"/><br/>
+            </div>
+        </div>
+            <br>
+        <div class="row">
+            <input type="submit" onclick="return validateForm()" value="提交">
+            <a href="#" class="button" th:href="@{/index}">返回</a>
+        </div>
+    </form>
+</div>
+</form>
+<script>
+    function validateForm() {
+        // 获取表单元素的值
+        var name = document.forms["myForm"]["name"].value;
+        var label = document.forms["myForm"]["label"].value;
+        var price = document.forms["myForm"]["price"].value;
+        // 检查名称是否为空
+        if (name == "") {
+            alert("名称不能为空");
+            return false;
+        }
+        //检查类型是否为空
+        if (label == "") {
+            alert("类型不能为空");
+            return false;
+        }
+        // 检查价格是否为空
+        if (price == "" ) {
+            alert("价格不能为空");
+            return false;
+        }
+        // 检查价格是否为数值
+        if (isNaN(price)){
+            alert("价格必须为数值");
+            return false;
+        }
+        // 校验通过，允许提交表单
+        return true;
+    }
+</script>
+</body>
+</html>

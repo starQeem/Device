@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}">
+</head>
+<body>
+<a href="#" th:href="@{/logout}" class="logout-btn">
+    <span class="logout-icon"></span>注销
+</a>
+<br>
+<div class="container">
+    <span class="span" th:text="${message}" th:if="${message!=null}">诶嘿</span><br><br>
+    <a href="#" class="button" th:href="@{/index/add}">添加设备</a>
+    <form th:action="@{/index}" th:object="${device}" method="get" class="searchForm">
+        <input type="text" name="name" placeholder="搜索..." class="searchInput" th:value="${name}">
+        <button type="submit" class="searchButton">搜索</button>
+    </form>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>名称</th>
+        <th>类型</th>
+        <th>价格</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="page : ${page.list}">
+        <td th:text="${page.id}"></td>
+        <td th:text="${page.name}"></td>
+        <td th:text="${page.label}"></td>
+        <td th:text="${page.price}"></td>
+        <td>
+            <a href="#" class="button" th:href="@{/index/{id}/update(id=${page.id})}">修改</a>
+            <a href="#" class="button" th:href="@{/index/{id}/delete(id=${page.id})}">删除</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="container">
+    <a class="button" href="#" th:href="@{/index/{pageNum}(pageNum=${page.prePage})}"
+       th:if="${page.hasPreviousPage}">上一页</a>
+    <a class="button" href="#" th:href="@{/index/{pageNum}(pageNum=${page.nextPage})}"
+       th:if="${page.hasNextPage}">下一页</a>
+</div>
+</body>
+</html>
